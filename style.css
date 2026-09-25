@@ -1,0 +1,353 @@
+* { box-sizing: border-box; }
+
+html {
+  background: #163457 url("images/bgnoise-opti.png");
+}
+
+body {
+  margin: 0;
+  color: #fff;
+  font: 16px/20px Arial, sans-serif;
+  text-shadow: 1px 1px 0 rgba(0,0,0,0.4);
+}
+
+h2 {
+  font: 28px/36px Arial, Helvetica, sans-serif;
+  margin: 0 0 12px;
+}
+
+h3 {
+  font: 20px/32px Arial, Helvetica, sans-serif;
+  margin: 24px 0 8px;
+}
+
+p + p { margin-top: 16px; }
+
+a {
+  text-decoration: none;
+  color: #9dd73f;
+}
+a:hover { text-decoration: underline; }
+
+header {
+  width: 400px;
+  margin: 0 auto;
+}
+header h1 {
+  font: 32px/64px Impact, "Arial Black", sans-serif;
+  letter-spacing: 0.04em;
+  color: #c63929;
+  text-align: center;
+  text-shadow: 0 5px 20px rgba(0,0,0,0.4);
+}
+
+#root { min-height: calc(100vh - 40px); }
+
+#main {
+  width: 960px;
+  margin: 0 auto;
+  overflow: visible;
+  background: url("images/panel-opti.png") no-repeat 410px 40px;
+}
+#main:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+#intro {
+  float: left;
+  width: 490px;
+  padding: 20px 40px 20px 10px;
+}
+#intro p { margin-right: 12px; text-align: left; }
+
+#console-wrap {
+  float: left;
+  width: 460px;
+  margin-top: 3px;
+}
+
+#run {
+  position: static;
+  display: inline-block;
+  margin: 0 0 10px;
+  padding: 8px 22px;
+  border: 0;
+  border-radius: 4px;
+  background: #c63929;
+  color: #fff;
+  font: bold 14px/1 Arial, sans-serif;
+  text-shadow: none;
+  cursor: pointer;
+}
+#run.running { background: #2a8f4e; }
+#run:focus { outline: 2px solid #9dd73f; }
+
+.transport {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin: 12px 0 8px;
+}
+.volume-label {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font: 11px/1 Arial, sans-serif;
+  letter-spacing: 0.04em;
+  color: rgba(255,255,255,0.8);
+  text-transform: lowercase;
+}
+#volume {
+  width: 110px;
+  accent-color: #c63929;
+  cursor: pointer;
+}
+
+#console {
+  position: relative;
+  width: 460px;
+  height: 340px;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+#waveformcheck {
+  display: inline-block;
+  width: 44px;
+  height: 18px;
+  position: absolute;
+  cursor: pointer;
+  top: 126px;
+  left: 35px;
+}
+#waveformcheck .check {
+  display: block;
+  width: 22px;
+  height: 20px;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transition: left .25s ease-out;
+  background: url("images/sprites-opti.png") no-repeat 0 -45px;
+}
+#waveformcheck input[type=checkbox] { display: none; }
+#waveformcheck input[type=checkbox]:checked + .check { left: 20px; }
+
+.ui-dial {
+  display: inline-block;
+  width: 36px;
+  height: 36px;
+  background: url("images/dial.png");
+  cursor: ns-resize;
+}
+
+#tempo, #threshold, #shape {
+  position: absolute;
+  top: 57px;
+}
+#tempo     { left: 112px; }
+#threshold { left: 172px; }
+#shape     { left: 232px; }
+
+.knob-label {
+  position: absolute;
+  top: 94px;
+  width: 54px;
+  margin-left: -9px;
+  font: 9px/1 Arial, sans-serif;
+  letter-spacing: 0.02em;
+  color: rgba(255,255,255,0.85);
+  text-align: center;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.8);
+  pointer-events: none;
+}
+#label-tempo     { left: 112px; }
+#label-threshold { left: 172px; }
+#label-shape     { left: 232px; }
+
+#tuning, #cutoff, #resonance, #envmod, #decay, #accent {
+  position: absolute;
+  top: 117px;
+}
+#tuning    { left: 112px; }
+#cutoff    { left: 172px; }
+#resonance { left: 232px; }
+#envmod    { left: 292px; }
+#decay     { left: 352px; }
+#accent    { left: 412px; }
+
+.led {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  background: url("images/sprites-opti.png") no-repeat -100px -45px;
+}
+.led.on { background-position: -50px -45px; }
+
+#console button {
+  border: 0;
+  position: absolute;
+  background: url("images/sprites-opti.png") no-repeat;
+  cursor: pointer;
+}
+#console button.tall {
+  background-position: -150px -45px;
+  width: 19px;
+  height: 35px;
+}
+#console button.tall:active { background-position: -200px -45px; }
+#console button.flat {
+  background-position: -250px -45px;
+  width: 35px;
+  height: 19px;
+}
+#console button.flat:active { background-position: -300px -45px; }
+#console button.square {
+  width: 35px;
+  height: 35px;
+  background-position: -350px -45px;
+}
+#console button.square:active { background-position: -400px -45px; }
+#console button::-moz-focus-inner { border: 0; }
+#console button:focus { outline: none; }
+
+#stepnumber {
+  position: absolute;
+  width: 50px;
+  height: 43px;
+  top: 34px;
+  left: 397px;
+  background: url("images/sprites-opti.png") no-repeat 0 0;
+}
+
+#downled, #upled, #accentled, #slideled,
+#cled, #dled, #eled, #fled, #gled, #aled, #bled, #ccled {
+  top: 254px;
+}
+#cled      { left:  50px; }
+#dled      { left:  80px; }
+#eled      { left: 110px; }
+#fled      { left: 140px; }
+#gled      { left: 170px; }
+#aled      { left: 200px; }
+#bled      { left: 230px; }
+#ccled     { left: 260px; }
+#downled   { left: 290px; }
+#upled     { left: 320px; }
+#accentled { left: 350px; }
+#slideled  { left: 380px; }
+
+#pitchmodeled, #noteled, #restled { top: 212px; }
+#pitchmodeled { left:  10px; }
+#noteled      { left: 305px; }
+#restled      { left: 335px; }
+
+#dbled, #ebled, #gbled, #abled, #bbled { top: 193px; }
+#dbled { left:  65px; }
+#ebled { left:  95px; }
+#gbled { left: 155px; }
+#abled { left: 185px; }
+#bbled { left: 215px; }
+
+#dbbutton, #ebbutton, #gbbutton, #abbutton, #bbbutton { top: 218px; }
+#dbbutton { left:  71px; }
+#ebbutton { left: 101px; }
+#gbbutton { left: 161px; }
+#abbutton { left: 191px; }
+#bbbutton { left: 221px; }
+
+#downbutton, #upbutton, #accentbutton, #slidebutton,
+#cbutton, #dbutton, #ebutton, #fbutton, #gbutton, #abutton, #bbutton, #ccbutton {
+  top: 279px;
+}
+#cbutton      { left:  56px; }
+#dbutton      { left:  86px; }
+#ebutton      { left: 116px; }
+#fbutton      { left: 146px; }
+#gbutton      { left: 176px; }
+#abutton      { left: 206px; }
+#bbutton      { left: 236px; }
+#ccbutton     { left: 266px; }
+#downbutton   { left: 296px; }
+#upbutton     { left: 326px; }
+#accentbutton { left: 356px; }
+#slidebutton  { left: 386px; }
+
+#gatebutton      { left: 367px; top: 210px; }
+#pitchmodebutton { left:   9px; top: 238px; }
+#clearbutton     { left:   9px; top: 289px; }
+#backbutton      { left: 418px; top: 210px; }
+#stepbutton      { left: 418px; top: 279px; }
+
+#delay-fx {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  width: 460px;
+  margin-top: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: rgba(0,0,0,0.28);
+  box-sizing: border-box;
+}
+.fx-title {
+  font: bold 11px/1 Arial, sans-serif;
+  letter-spacing: 0.12em;
+  color: rgba(255,255,255,0.75);
+}
+.fx-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font: 10px/1 Arial, sans-serif;
+  color: rgba(255,255,255,0.8);
+}
+.fx-label input[type="range"] {
+  width: 72px;
+  accent-color: #c63929;
+  cursor: pointer;
+}
+.fx-steps {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: auto;
+}
+.fx-steps-caption {
+  margin-right: 4px;
+  font: 10px/1 Arial, sans-serif;
+  color: rgba(255,255,255,0.65);
+}
+.step-choice {
+  width: 26px;
+  height: 22px;
+  padding: 0;
+  border: 0;
+  border-radius: 3px;
+  background: #2a2a2a;
+  color: #ddd;
+  font: bold 11px/22px Arial, sans-serif;
+  cursor: pointer;
+}
+.step-choice.on,
+.step-choice[aria-pressed="true"] {
+  background: #2a4a8f;
+  color: #fff;
+}
+
+footer {
+  clear: both;
+  max-width: 960px;
+  margin: 24px auto 0;
+  padding: 0 12px;
+  border-radius: 10px 10px 0 0;
+  background: rgba(0,0,0,0.15);
+}
+footer p {
+  margin: 0;
+  font-size: 12px;
+  line-height: 32px;
+}

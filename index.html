@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>js303</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="root">
+    <header>
+      <h1>js303</h1>
+    </header>
+
+    <div id="main">
+      <div id="intro">
+        <h2>A true 303… in JavaScript</h2>
+        <p>TB-303 clone using the Web Audio API. Original engine by Emil Loer (2014). This copy is a static rebuild: no Ruby, no server.</p>
+        <p>Press <strong>Run</strong> to start. Drag the knobs vertically. Click piano keys and the step buttons to program a pattern.</p>
+        <p class="transport">
+          <button id="run" type="button">Run</button>
+          <label class="volume-label" for="volume">volume
+            <input id="volume" type="range" min="0" max="1" step="0.01" value="0.7">
+          </label>
+        </p>
+        <h3>Credits</h3>
+        <p>JS-303 was created by <a href="http://emilloer.com">Emil Loer</a> (<a href="https://twitter.com/thedjinn">@thedjinn</a>). GPL-3.0.</p>
+      </div>
+
+      <div id="console-wrap">
+        <div id="console">
+          <div id="tempo"></div>
+          <div id="threshold"></div>
+          <div id="shape"></div>
+          <span class="knob-label" id="label-tempo">tempo</span>
+          <span class="knob-label" id="label-threshold">threshold</span>
+          <span class="knob-label" id="label-shape">shape</span>
+
+          <div id="stepnumber"></div>
+
+          <label id="waveformcheck" for="waveform">
+            <input id="waveform" name="waveform" type="checkbox">
+            <span class="check"></span>
+          </label>
+          <div id="tuning"></div>
+          <div id="cutoff"></div>
+          <div id="resonance"></div>
+          <div id="envmod"></div>
+          <div id="decay"></div>
+          <div id="accent"></div>
+
+          <div id="pitchmodeled" class="led"></div>
+          <button id="pitchmodebutton" class="flat" type="button" title="Enable pitch mode to advance the step counter after clicking on a note button"></button>
+          <button id="clearbutton" class="flat" type="button" title="Reset the current step"></button>
+
+          <div id="cled" class="led"></div>
+          <button id="cbutton" class="tall" type="button"></button>
+          <div id="dbled" class="led"></div>
+          <button id="dbbutton" class="tall" type="button"></button>
+          <div id="dled" class="led"></div>
+          <button id="dbutton" class="tall" type="button"></button>
+          <div id="ebled" class="led"></div>
+          <button id="ebbutton" class="tall" type="button"></button>
+          <div id="eled" class="led"></div>
+          <button id="ebutton" class="tall" type="button"></button>
+          <div id="fled" class="led"></div>
+          <button id="fbutton" class="tall" type="button"></button>
+          <div id="gbled" class="led"></div>
+          <button id="gbbutton" class="tall" type="button"></button>
+          <div id="gled" class="led"></div>
+          <button id="gbutton" class="tall" type="button"></button>
+          <div id="abled" class="led"></div>
+          <button id="abbutton" class="tall" type="button"></button>
+          <div id="aled" class="led"></div>
+          <button id="abutton" class="tall" type="button"></button>
+          <div id="bbled" class="led"></div>
+          <button id="bbbutton" class="tall" type="button"></button>
+          <div id="bled" class="led"></div>
+          <button id="bbutton" class="tall" type="button"></button>
+          <div id="ccled" class="led"></div>
+          <button id="ccbutton" class="tall" type="button"></button>
+
+          <div id="downled" class="led"></div>
+          <button id="downbutton" class="tall" type="button" title="Play this step an octave lower"></button>
+          <div id="upled" class="led"></div>
+          <button id="upbutton" class="tall" type="button" title="Play this step an octave higher"></button>
+          <div id="accentled" class="led"></div>
+          <button id="accentbutton" class="tall" type="button" title="Play this step with accented cutoff and amplitude"></button>
+          <div id="slideled" class="led"></div>
+          <button id="slidebutton" class="tall" type="button" title="Slide the previous note to the pitch of this step"></button>
+
+          <button id="stepbutton" class="square" type="button" title="Go to the next step"></button>
+          <button id="backbutton" class="flat" type="button" title="Go to the previous step"></button>
+
+          <div id="noteled" class="led"></div>
+          <div id="restled" class="led"></div>
+          <button id="gatebutton" class="flat" type="button" title="Toggle whether this step is a note or a rest"></button>
+        </div>
+
+        <div id="delay-fx">
+          <span class="fx-title">DELAY</span>
+          <label class="fx-label" for="delay-send">send
+            <input id="delay-send" type="range" min="0" max="1" step="0.01" value="0.5">
+          </label>
+          <label class="fx-label" for="delay-feedback">feedback
+            <input id="delay-feedback" type="range" min="0" max="0.95" step="0.01" value="0.5">
+          </label>
+          <div class="fx-steps">
+            <span class="fx-steps-caption">steps</span>
+            <button type="button" class="step-choice" data-steps="1">1</button>
+            <button type="button" class="step-choice" data-steps="2">2</button>
+            <button type="button" class="step-choice" data-steps="3">3</button>
+            <button type="button" class="step-choice" data-steps="4">4</button>
+            <button type="button" class="step-choice" data-steps="8">8</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div id="rootfooter"></div>
+  </div>
+
+  <footer>
+    <p>CPU: <span id="load">—</span> · static rebuild of <a href="https://github.com/thedjinn/js303">thedjinn/js303</a></p>
+  </footer>
+
+  <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js"></script>
+  <script src="js/jquery.ui.dial.js"></script>
+  <script src="js/synth.js"></script>
+  <script src="js/audio.js"></script>
+  <script src="js/js303.js"></script>
+</body>
+</html>

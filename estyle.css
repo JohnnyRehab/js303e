@@ -1,0 +1,187 @@
+@import url("https://fonts.googleapis.com/css2?family=Abel&display=swap");
+
+:root {
+  --red: #fc3932;
+  --darkred: #cc2b1f;
+  --grey: #ccc;
+  --darkgrey: #aaa;
+  --cell: 30px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  color: #222;
+  background: #f4f4f4;
+  font-family: Abel, "Helvetica Neue", Arial, sans-serif;
+}
+
+.container {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 16px 20px 40px;
+}
+
+h1 {
+  margin: 8px 0 6px;
+  font-weight: 400;
+  font-size: 36px;
+}
+
+.wip {
+  display: inline-block;
+  margin: 0 0 16px;
+  padding: 6px 10px;
+  background: #d9edf7;
+  color: #31708f;
+  border-radius: 3px;
+  font-size: 14px;
+}
+
+.buttonrow {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 4px 8px;
+  margin-bottom: 8px;
+}
+
+.knob {
+  display: inline-block;
+  padding: 6px 10px;
+  text-align: center;
+}
+.knob p {
+  margin: -4px 0 0;
+  font-size: 14px;
+}
+.knob input {
+  font-family: Abel, sans-serif !important;
+}
+
+.waveform {
+  width: 120px;
+  display: inline-block;
+  vertical-align: top;
+  text-align: center;
+  padding-top: 8px;
+}
+.waveform p { margin: 0 0 8px; }
+
+.waveform-button,
+.button,
+.toggle-button,
+.pitch-button,
+.pattern-button {
+  outline: none;
+  border: none;
+  color: #fff;
+  display: inline-block;
+  padding: 0;
+  vertical-align: top;
+  cursor: pointer;
+  font-family: Abel, sans-serif;
+}
+
+.waveform-button {
+  padding: 10px 12px;
+  background: var(--red);
+  margin: 0 2px;
+}
+.waveform-button.grey { background: var(--grey); color: #333; }
+
+.toggle-button {
+  background: var(--grey);
+  width: var(--cell);
+  height: var(--cell);
+  margin-bottom: 2px;
+}
+.toggle-button.on { background: var(--red); }
+
+.pitch-label {
+  background: #e6e6e6;
+  height: var(--cell);
+  margin-bottom: 2px;
+  line-height: var(--cell);
+  font-size: 1.15em;
+  text-align: center;
+}
+.note-names {
+  width: 36px;
+}
+.note-names .note-name {
+  background: #dedede;
+  font-size: 12px;
+  letter-spacing: 0;
+}
+
+.step-label {
+  background: #f2f2f2;
+  height: var(--cell);
+  margin-bottom: 2px;
+  line-height: var(--cell);
+  text-align: center;
+  font-size: 1.15em;
+}
+
+.grid {
+  display: inline-flex;
+  align-items: flex-start;
+  margin-top: 10px;
+}
+
+.step-column {
+  width: var(--cell);
+  box-sizing: content-box;
+  padding-left: 2px;
+  display: inline-block;
+  line-height: 0;
+  padding-top: 5px;
+  border-top: 5px solid transparent;
+}
+.step-column.highlight .step-label { background: #e6e6e6; }
+.step-column.playing { border-top: 5px solid var(--red); }
+
+.pitch-button {
+  width: var(--cell);
+  height: var(--cell);
+  margin-bottom: 2px;
+  background: var(--grey);
+}
+.pitch-button.on { background: var(--red); }
+.step-column.highlight .pitch-button:not(.on) { background: #aaaaaa; }
+
+.side {
+  padding-left: 12px;
+  padding-top: 10px;
+  display: inline-block;
+  width: 270px;
+}
+.side .button {
+  width: 126px;
+  height: 62px;
+  padding: 10px 20px;
+  margin: 0 2px 8px 0;
+  background: var(--red);
+  font-size: 16px;
+}
+.side .button:active { background: var(--darkred); }
+.side .button.grey { background: var(--grey); color: #333; }
+
+.pattern-row { margin-bottom: 8px; }
+.pattern-button {
+  width: var(--cell);
+  height: var(--cell);
+  margin-right: 2px;
+  background: var(--grey);
+  color: #333;
+}
+.pattern-button.on { background: var(--red); color: #fff; }
+
+.nav {
+  margin-top: 24px;
+  font-size: 13px;
+  color: #666;
+}
+.nav a { color: var(--darkred); }
